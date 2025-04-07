@@ -262,7 +262,7 @@
         return;
       }
 
-      const response = await fetch("http://localhost:3000/record-username", {
+      const response = await fetch("https://femdetect-backend.onrender.com/record-username", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username })
@@ -277,7 +277,7 @@
 
     // Fetch and display usernames
     async function fetchUsernames() {
-      const response = await fetch("http://localhost:3000/usernames");
+      const response = await fetch("https://femdetect-backend.onrender.com/usernames");
       const usernames = await response.json();
       const list = document.getElementById("userList");
       list.innerHTML = "";
