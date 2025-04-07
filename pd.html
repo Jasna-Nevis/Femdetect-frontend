@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FemDetect - Personal Details">
+    <title>Personal Details - FemDetect</title>
+    <link rel="icon" href="images.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        
+        .hero {
+            height: 100vh;
+            background: url('pd.jpg') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7); /* Black with transparency */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        
+        .overlay h1 {
+            font-size: 3.5rem;
+            color: #FFA500; /* Orange color */
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        
+        .details-form {
+            width: 100%;
+            max-width: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .details-form input, .details-form select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #FFA500; /* Orange underline */
+            color: #FFA500; /* Orange text */
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+        }
+
+        .details-form input::placeholder, .details-form select {
+            color: rgba(255, 165, 0, 0.7); /* Lighter orange */
+        }
+
+        
+        .details-form input[readonly] {
+            color: #FFC266; /* Lighter orange for read-only fields */
+            font-weight: bold;
+            border-bottom: 2px solid #FFC266;
+        }
+
+        
+        .details-form button {
+            width: 100%;
+            padding: 10px;
+            background: #FFA500; /* Orange background */
+            color: #000000; /* Black text */
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .details-form button:hover {
+            background: #e69500; /* Darker orange on hover */
+        }
+    </style>
+    <script>
+        function calculateBMI() {
+            let weight = parseFloat(document.getElementById("weight").value);
+            let height = parseFloat(document.getElementById("height").value) / 100; // Convert cm to meters
+            if (!isNaN(weight) && !isNaN(height) && height > 0) {
+                let bmi = (weight / (height * height)).toFixed(2);
+                document.getElementById("bmi").value = bmi;
+            } else {
+                document.getElementById("bmi").value = "";
+            }
+        }
+    </script>
+</head>
+<body>
+
+    
+    <div class="hero">
+        <div class="overlay">
+            <h1>Personal Details</h1>
+            <form class="details-form">
+                <input type="text" placeholder="Name" required>
+                <select required>
+                    <option value="" disabled selected>Gender</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="number" placeholder="Age" required>
+
+                
+                <input type="number" id="weight" placeholder="Weight (kg)" min="1" step="0.1" required oninput="calculateBMI()">
+                <input type="number" id="height" placeholder="Height (cm)" min="1" step="0.1" required oninput="calculateBMI()">
+                
+                
+                <input type="text" id="bmi" placeholder="BMI (Auto-calculated)" readonly>
+
+                <input type="date" placeholder="Date of Birth" required>
+
+                
+                <select required>
+                    <option value="" disabled selected>Blood Group</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                </select>
+
+                <button type="button" onclick="location.href='home.html'">Submit</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

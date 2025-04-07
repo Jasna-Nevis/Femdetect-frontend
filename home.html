@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FemDetect-Home</title>
+    <link rel="icon" href="images.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        
+        body {
+            background: url('home3.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+
+        
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 165, 0, 0.8); /* Orange with transparency */
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: black;
+            text-decoration: none;
+            padding: 0 15px;
+        }
+
+        .navbar a:not(:last-child)::after {
+            content: " | ";
+            color: black;
+            margin-left: 15px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        
+        .user-controls {
+            position: absolute;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        
+        .personal-details-icon {
+            font-size: 1.5rem;
+            color: black;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .personal-details-icon:hover {
+            transform: scale(1.1);
+        }
+
+        
+        .logout-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: darkred;
+        }
+
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: black;
+            text-shadow: 2px 2px 15px rgba(255, 165, 0, 0.8);
+        }
+
+        
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 50px;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .box {
+            width: 200px;
+            height: 150px;
+            background: #1a1a1a;
+            color: #FFA500;
+            padding: 10px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+        }
+
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #FFA500;
+            color: black;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="navbar">
+        <a href="home.html">Home</a>
+        <a href="chat.html" target="_blank">Chatbot</a>
+        <a href="https://period-cycle-predictor-8s6qbebapbasvdjdzrnoex.streamlit.app/" target="_blank">Menstrual Cycle Tracking</a>
+        <a href="https://pcod-pcos-predictor-wevbfkgqdnirt5hudet3nb.streamlit.app/" target="_blank">PCOD Detection</a>
+        <a href="https://period-lifestyle-tips-web-awatwcwgmfr97cs4kipm8a.streamlit.app/#37a702d3" target="_blank">Tips</a>
+        <a href="trackbody.html">Track Body Activity</a>
+
+        
+        <div class="user-controls">
+            <span class="personal-details-icon" onclick="location.href='pd.html'">👤</span>
+            <button class="logout-btn" onclick="location.href='index.html'">Logout</button>
+        </div>
+    </div>
+
+    
+    <div class="hero">
+        Welcome to FemDetect
+    </div>
+
+    
+    <div class="container">
+        <div class="box">
+            <h2>Menstrual Cycle Tracking</h2>
+            <p>Track and analyze your cycle for better health insights.</p>
+        </div>
+        <div class="box">
+            <h2>Detection</h2>
+            <p>Get Personalized detection for health conditions like PCOS.</p>
+        </div>
+        <div class="box">
+            <h2>Tips</h2>
+            <p>Personalized health tips to maintain wellness.</p>
+        </div>
+        <div class="box">
+            <h2>Chatbot</h2>
+            <p>24/7 chatbot to answer your health queries instantly.</p>
+        </div>
+        <div class="box">
+            <h2>Track Body Activity (Low Risk)</h2>
+            <p>Monitor your body signals and assess health risks.</p>
+        </div>
+    </div>
+
+    
+    <div class="footer">
+        &copy; 2025 FemDetect | Empowering Women's Health
+    </div>
+
+</body>
+</html>

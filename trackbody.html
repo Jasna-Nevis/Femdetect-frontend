@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Track Body Activity</title>
+  <link rel="icon" href="public/img/images.png" type="image/png">
+  <style>
+    * {
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background: url('body2.avif') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding-top: 60px;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 165, 0, 0.8);
+      padding: 15px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    .navbar a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2rem;
+      padding: 0 15px;
+    }
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+    .nav-icons {
+      display: flex;
+      align-items: center;
+    }
+    .icon {
+      font-size: 1.5rem;
+      color: black;
+      cursor: pointer;
+      margin-left: 15px;
+      transition: transform 0.3s ease;
+    }
+    .icon:hover {
+      transform: scale(1.1);
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 20px;
+    }
+    .box {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 10px;
+      width: 250px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+      margin-bottom: 20px;
+    }
+    h2 {
+      color: #FFA500;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    p {
+      font-size: 1.2rem;
+      margin: 10px 0;
+    }
+    .progress-bar {
+      width: 100%;
+      background: #444;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .progress {
+      height: 20px;
+      width: 0%;
+      background: #FFA500;
+      transition: width 0.5s;
+    }
+    button {
+      padding: 10px;
+      background: #FFA500;
+      border: none;
+      color: black;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #e69500;
+    }
+    .bmi-input,
+    .sleep-select {
+      display: block;
+      margin: 10px auto;
+      width: 80%;
+      text-align: center;
+      background: #333;
+      color: #fff;
+      border: 1px solid #FFA500;
+      border-radius: 5px;
+      padding: 8px;
+    }
+    .tip {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
+
+  <script>
+    let water = 0;
+    let exercise = 0;
+
+    function addWater() {
+      if (water < 100) {
+        water += 10;
+        document.getElementById("waterProgress").style.width = water + "%";
+        document.getElementById("waterCount").innerText = (water / 10) + "/10 Glasses";
+      }
+    }
+
+    function logExercise() {
+      let mins = parseInt(prompt("Enter Exercise Minutes:", "0"));
+      if (!isNaN(mins) && mins > 0) {
+        exercise += mins;
+        document.getElementById("exerciseCount").innerText = exercise + " mins";
+      }
+    }
+
+    function updateSleepQuality(val) {
+      document.getElementById("sleepCount").innerText = val;
+    }
+
+    function autoCalcBMI() {
+      let weightStr = document.getElementById("bmiWeight").value;
+      let heightStr = document.getElementById("bmiHeight").value;
+      weightStr = weightStr.replace(',', '.');
+      heightStr = heightStr.replace(',', '.');
+      let weight = parseFloat(weightStr);
+      let height = parseFloat(heightStr);
+      if (!isNaN(weight) && !isNaN(height) && height > 0) {
+        let bmi = weight / (height * height);
+        document.getElementById("bmiValue").innerText = bmi.toFixed(2);
+      } else {
+        document.getElementById("bmiValue").innerText = "0.00";
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <a href="home.html">Home</a>
+    <div class="nav-icons">
+      <span class="icon" onclick="location.href='pd.html'">👤</span>
+      <span class="icon" onclick="location.href='index.html'">🚪</span>
+    </div>
+  </div>
+
+  <!-- Content Boxes -->
+  <div class="container">
+
+    <!-- Water Intake -->
+    <div class="box">
+      <h2><strong>Water Intake</strong></h2>
+      <p id="waterCount">0/10 Glasses</p>
+      <div class="progress-bar">
+        <div class="progress" id="waterProgress"></div>
+      </div>
+      <button onclick="addWater()">Drink Water</button>
+      <p class="tip">💧 <strong>Tip:</strong> Stay hydrated with 8–10 glasses per day.</p>
+    </div>
+
+    <!-- Sleep Quality -->
+    <div class="box">
+      <h2><strong>Sleep Quality</strong></h2>
+      <select id="sleepSelect" class="sleep-select" onchange="updateSleepQuality(this.value)">
+        <option value="Not Logged">Not Logged</option>
+        <option value="Good">Good</option>
+        <option value="Average">Average</option>
+        <option value="Bad">Bad</option>
+      </select>
+      <p id="sleepCount">Not Logged</p>
+      <p class="tip">😴 <strong>Tip:</strong> 7–9 hours of good sleep improves mental and physical health.</p>
+    </div>
+
+    <!-- Exercise -->
+    <div class="box">
+      <h2><strong>Exercise Time</strong></h2>
+      <p id="exerciseCount">0 mins</p>
+      <button onclick="logExercise()">Log Exercise</button>
+      <p class="tip">🏃 <strong>Tip:</strong> Aim for 30 mins of activity daily to stay fit.</p>
+    </div>
+
+    <!-- BMI -->
+    <div class="box">
+      <h2><strong>BMI</strong></h2>
+      <label style="color:#FFA500;">Weight (kg):</label>
+      <input type="number" step="0.1" class="bmi-input" id="bmiWeight" oninput="autoCalcBMI()" placeholder="e.g., 70 or 70,5" />
+      <label style="color:#FFA500;">Height (m):</label>
+      <input type="number" step="0.01" class="bmi-input" id="bmiHeight" oninput="autoCalcBMI()" placeholder="e.g., 1.70 or 1,70" />
+      <p style="margin-top:10px;">BMI: <span id="bmiValue">0.00</span></p>
+      <div class="tip" style="margin-top: 10px;">
+        <strong>BMI Guide:</strong><br>
+        <span style="color:#90ee90;">Under 18.5</span> – Underweight<br>
+        <span style="color:#00ffcc;">18.5 - 24.9</span> – Normal (Healthy)<br>
+        <span style="color:#ffcc00;">25 - 29.9</span> – Overweight<br>
+        <span style="color:#ff6666;">30 and above</span> – Obese
+      </div>
+      <p class="tip">⚖️ <strong>Tip:</strong> Maintain a BMI between 18.5–24.9 for a healthy body.</p>
+    </div>
+
+  </div>
+</body>
+</html>
